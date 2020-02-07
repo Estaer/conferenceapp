@@ -2,7 +2,6 @@ package com.example.conference.controllers;
 
 import com.example.conference.models.Session;
 import com.example.conference.services.SessionService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,15 +40,12 @@ public class SessionController {
         sessionService.deleteSession(id);
     }
 
-   /* PUT updates all attributes and PATCH updates specific records
+   /*
     BeanUtils.copyProperties gets existing session and copies the updated version
         3rd parameter ignores fields that you don't need to copy*/
 
     @PutMapping("/{id}")
     public Session update(@PathVariable("id") Long id, @RequestBody Session session) {
-        Session existingSession = sessionService.getById(id);
-        BeanUtils.copyProperties(session, existingSession, "session_id");
-
         return sessionService.updateSession(id, session);
     }
 
