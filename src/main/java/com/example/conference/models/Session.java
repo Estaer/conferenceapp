@@ -3,6 +3,7 @@ package com.example.conference.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity(name = "sessions")
@@ -12,8 +13,13 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long session_id;
+
+    @NotEmpty(message = "Session name is required")
     private String session_name;
+    @NotEmpty(message = "Description is required")
     private String session_description;
+    @NotNull(message = "Session length is required")
+//    @Size(min = 30, max = 60, message = "Session should take between 30 to 60 minutes")
     private Integer session_length;
 
     @ManyToMany

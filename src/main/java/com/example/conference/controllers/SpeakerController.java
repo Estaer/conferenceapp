@@ -5,6 +5,7 @@ import com.example.conference.services.SpeakerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class SpeakerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Speaker create(@RequestBody final Speaker speaker) {
+    public Speaker create(@Valid @RequestBody final Speaker speaker) {
         return speakerService.addSpeaker(speaker);
     }
 

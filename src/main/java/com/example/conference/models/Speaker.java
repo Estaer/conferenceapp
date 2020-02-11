@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity(name = "speakers")
@@ -12,9 +13,13 @@ public class Speaker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long speaker_id;
+    @NotEmpty(message = "Firstname is required")
     private String first_name;
+    @NotEmpty(message = "Lastname is required")
     private String last_name;
+    @NotEmpty(message = "Title is required")
     private String title;
+    @NotEmpty(message = "Company name is required")
     private String company;
 
     @Lob
